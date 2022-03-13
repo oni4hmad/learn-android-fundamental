@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.dicoding.picodiploma.mynavigation.databinding.FragmentCategoryBinding
 import com.dicoding.picodiploma.mynavigation.databinding.FragmentDetailCategoryBinding
 
@@ -31,12 +32,16 @@ class DetailCategoryFragment : Fragment() {
         /*val dataName = arguments?.getString(CategoryFragment.EXTRA_NAME)
         val dataDescription = arguments?.getLong(CategoryFragment.EXTRA_STOCK)*/
 
-        /* get data from SafeArgs */
+        /* get data from SafeArgs: menerima data */
         val dataName = DetailCategoryFragmentArgs.fromBundle(arguments as Bundle).name
         val dataDescription = DetailCategoryFragmentArgs.fromBundle(arguments as Bundle).stock
 
         binding.tvCategoryName.text = dataName
         binding.tvCategoryDescription.text = "Stock : $dataDescription"
+
+        binding.btnProfile.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_detailCategoryFragment_to_homeFragment)
+        )
     }
 
     override fun onDestroy() {

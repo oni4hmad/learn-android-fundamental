@@ -12,6 +12,8 @@
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
+
+        <!-- NavHostFragment -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -20,6 +22,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <nav-graph android:value="@navigation/main_navigation" />
         </activity>
     </application>
 

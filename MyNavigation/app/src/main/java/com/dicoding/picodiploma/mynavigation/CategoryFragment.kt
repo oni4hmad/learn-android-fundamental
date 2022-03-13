@@ -42,7 +42,7 @@ class CategoryFragment : Fragment() {
             mBundle.putLong(EXTRA_STOCK, 7)
             view.findNavController().navigate(R.id.action_categoryFragment_to_detailCategoryFragment, mBundle)*/
 
-            /* dg safeArg (aman) */
+            /* dg safeArg (aman): mengirim data */
             val toDetailCategoryFragment = CategoryFragmentDirections.actionCategoryFragmentToDetailCategoryFragment()
             toDetailCategoryFragment.name = "Lifestyle"
             toDetailCategoryFragment.stock = 7

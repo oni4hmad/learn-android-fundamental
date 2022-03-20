@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        /* tidak ush karena sudah pakai by viewModels() */
         /*viewModel = ViewModelProvider(this).get(MainViewModel::class.java)*/
 
         displayResult()

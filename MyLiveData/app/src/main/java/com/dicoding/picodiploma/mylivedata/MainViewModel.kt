@@ -9,7 +9,7 @@ import java.util.*
 class MainViewModel : ViewModel() {
 
     companion object {
-        private const val ONE_SECOND = 1000
+        private const val ONE_SECOND = 1000L
     }
 
     private val mInitialTime = SystemClock.elapsedRealtime()
@@ -22,7 +22,7 @@ class MainViewModel : ViewModel() {
                 val newValue = (SystemClock.elapsedRealtime() - mInitialTime) / 1000
                 mElapsedTime.postValue(newValue)
             }
-        }, ONE_SECOND.toLong(), ONE_SECOND.toLong())
+        }, ONE_SECOND, ONE_SECOND)
     }
 
     fun getElapsedTime(): LiveData<Long?> {

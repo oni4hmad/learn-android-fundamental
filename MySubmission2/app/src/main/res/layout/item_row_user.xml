@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -29,49 +28,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/img_user"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_username"
-            app:srcCompat="@drawable/ic_baseline_location_on_24" />
-
         <TextView
-            android:id="@+id/tv_item_name"
+            android:id="@+id/tv_item_username"
+            style="@style/Text.Main"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Nama"
-            style="@style/Text.Main"
+            android:text="@string/_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_user"
             app:layout_constraintTop_toTopOf="@+id/img_user" />
-
-        <TextView
-            android:id="@+id/tv_item_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            style="@style/Text"
-            android:text="Username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_user"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
-
-        <TextView
-            android:id="@+id/tv_item_location"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            style="@style/Text"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

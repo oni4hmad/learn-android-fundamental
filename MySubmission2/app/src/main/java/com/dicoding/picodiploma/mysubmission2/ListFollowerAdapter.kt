@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.picodiploma.mysubmission2.databinding.ItemRowUserBinding
 
-class ListUserAdapter(private val listUser: List<UserResult>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
+class ListFollowerAdapter(private val listUser: List<UserFollower>) : RecyclerView.Adapter<ListFollowerAdapter.ListViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -36,7 +36,7 @@ class ListUserAdapter(private val listUser: List<UserResult>) : RecyclerView.Ada
 
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserResult)
+        fun onItemClicked(data: UserFollower)
     }
 
 }

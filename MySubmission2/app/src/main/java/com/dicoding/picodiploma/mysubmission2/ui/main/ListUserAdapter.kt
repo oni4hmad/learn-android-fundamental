@@ -1,12 +1,14 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.picodiploma.mysubmission2.R
 import com.dicoding.picodiploma.mysubmission2.databinding.ItemRowUserBinding
+import com.dicoding.picodiploma.mysubmission2.network.UserResult
 
-class ListFollowerAdapter(private val listUser: List<UserFollower>) : RecyclerView.Adapter<ListFollowerAdapter.ListViewHolder>() {
+class ListUserAdapter(private val listUser: List<UserResult>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -32,11 +34,10 @@ class ListFollowerAdapter(private val listUser: List<UserFollower>) : RecyclerVi
 
     override fun getItemCount(): Int = listUser.size
 
-    class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
-
+    inner class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserFollower)
+        fun onItemClicked(data: UserResult)
     }
 
 }

@@ -1,9 +1,13 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.picodiploma.mysubmission2.network.ApiConfig
+import com.dicoding.picodiploma.mysubmission2.network.SearchResponse
+import com.dicoding.picodiploma.mysubmission2.network.UserResult
+import com.dicoding.picodiploma.mysubmission2.ui.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +28,14 @@ class MainViewModel : ViewModel() {
     private val _listUsers = MutableLiveData<List<UserResult>>()
     val listUsers: LiveData<List<UserResult>> = _listUsers
 
+    private val _snackbarText = MutableLiveData<Event<String>>()
+    val snackbarText: LiveData<Event<String>> = _snackbarText
+
     val isResultEmpty: Boolean get() = listUsers.value?.isEmpty() ?: true
+
+    private val _toastText = MutableLiveData<Event<String>>()
+    val toastText: LiveData<Event<String>> = _toastText
+
     var lastQuery = String()
 
     init {
@@ -41,18 +52,16 @@ class MainViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    /*val responseBody = response.body()
-                    if (responseBody != null) {
-                        setRestaurantData(responseBody.restaurant)
-                        setReviewData(responseBody.restaurant.customerReviews)
-                    }*/
                     _listUsers.value = response.body()?.usersSearchResult
+                    if (isResultEmpty) _toastText.value = Event("User tidak ditemukan")
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
+                    _snackbarText.value = Event(response.message())
                 }
             }
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                 _isLoading.value = false
+                _snackbarText.value = Event(t.message.toString())
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

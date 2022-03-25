@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.userdetails
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +10,9 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.dicoding.picodiploma.mysubmission2.R
 import com.dicoding.picodiploma.mysubmission2.databinding.ActivityUserDetailsBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -38,28 +40,32 @@ class UserDetailsActivity : AppCompatActivity() {
         supportActionBar?.title = "Detail User"
 
         username = intent.getStringExtra(EXTRA_USERNAME) as String
-//        by viewModels{ UserDetailsViewModelFactory(username) }
-        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(username)).get(UserDetailsViewModel::class.java)
-
-        /*val user = intent.getParcelableExtra<User>(EXTRA_USERNAME) as User
-        binding.imgUser.setImageResource(user.avatar)
-        binding.tvName.text = user.name
-        binding.tvUsername.text = getString(R.string.username, user.username)
-        binding.tvLocation.text = user.location
-        binding.tvUserCount.text = getString(R.string.user_count, user.followers, user.following, user.repository)*/
+        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(username)).get(
+            UserDetailsViewModel::class.java)
 
         viewModel.userInfo.observe(this, { userInfo ->
             Glide.with(this@UserDetailsActivity)
                 .load(userInfo.avatarUrl)
                 .into(binding.imgUser)
-            binding.tvName.text = userInfo.name
-            binding.tvUsername.text = getString(R.string.username, userInfo.login)
-            binding.tvLocation.text = userInfo.location
-            if (userInfo.location.isNullOrEmpty()) binding.ivLocation.visibility = View.GONE
-            binding.tvUserCount.text = getString(R.string.user_count, userInfo.followers, userInfo.following, userInfo.publicRepos)
+            binding.apply {
+                tvName.text = userInfo.name
+                tvUsername.text = getString(R.string.username, userInfo.login)
+                tvLocation.text = userInfo.location
+                if (userInfo.location.isNullOrEmpty()) ivLocation.visibility = View.GONE
+                tvUserCount.text = getString(R.string.user_count, userInfo.followers, userInfo.following, userInfo.publicRepos)
+            }
         })
         viewModel.isLoading.observe(this, {
             showLoading(it)
+        })
+        viewModel.snackbarText.observe(this, {
+            it.getContentIfNotHandled()?.let { snackBarText ->
+                Snackbar.make(
+                    window.decorView.rootView,
+                    snackBarText,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         })
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)

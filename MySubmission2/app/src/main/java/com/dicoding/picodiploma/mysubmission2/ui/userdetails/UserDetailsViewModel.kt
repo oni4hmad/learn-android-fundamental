@@ -1,10 +1,13 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.userdetails
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.picodiploma.mysubmission2.network.ApiConfig
+import com.dicoding.picodiploma.mysubmission2.network.UserInfo
+import com.dicoding.picodiploma.mysubmission2.ui.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +28,9 @@ class UserDetailsViewModel(val username: String) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _snackbarText = MutableLiveData<Event<String>>()
+    val snackbarText: LiveData<Event<String>> = _snackbarText
+
     init {
         findUserInfo(username)
     }
@@ -42,10 +48,12 @@ class UserDetailsViewModel(val username: String) : ViewModel() {
                     _userInfo.value = response.body()
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
+                    _snackbarText.value = Event(response.message())
                 }
             }
             override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 _isLoading.value = false
+                _snackbarText.value = Event(t.message.toString())
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

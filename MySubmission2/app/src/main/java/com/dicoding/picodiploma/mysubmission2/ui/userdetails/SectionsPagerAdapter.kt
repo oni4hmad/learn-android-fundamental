@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.userdetails
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

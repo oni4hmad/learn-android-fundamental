@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.userdetails
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.mysubmission2.databinding.FollowingFragmentBinding
+import com.dicoding.picodiploma.mysubmission2.network.UserFollowing
+import com.google.android.material.snackbar.Snackbar
 
 class FollowingFragment : Fragment() {
 
@@ -34,14 +36,27 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         username = arguments?.getString(ARG_USERNAME) as String
-        viewModel = ViewModelProvider(this, FollowingViewModelFactory(username)).get(FollowingViewModel::class.java)
+        viewModel = ViewModelProvider(this, FollowingViewModelFactory(username)).get(
+            FollowingViewModel::class.java)
         viewModel.userFollowing.observe(viewLifecycleOwner, { userFollowing ->
-            if (userFollowing.isEmpty())
-                Toast.makeText(view.context, "Following tidak ditemukan", Toast.LENGTH_SHORT).show()
-            else showRecyclerList(userFollowing)
+            showRecyclerList(userFollowing)
+        })
+        viewModel.toastText.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { toastText ->
+                Toast.makeText(view.context, toastText, Toast.LENGTH_SHORT).show()
+            }
         })
         viewModel.isLoading.observe(viewLifecycleOwner, {
             showLoading(it)
+        })
+        viewModel.snackbarText.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { snackBarText ->
+                Snackbar.make(
+                    binding.root.rootView,
+                    snackBarText,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         })
     }
 
@@ -51,7 +66,8 @@ class FollowingFragment : Fragment() {
         val listFollowingAdapter = ListFollowingAdapter(userFollowing)
         binding.rvFollowing.adapter = listFollowingAdapter
 
-        listFollowingAdapter.setOnItemClickCallback(object : ListFollowingAdapter.OnItemClickCallback {
+        listFollowingAdapter.setOnItemClickCallback(object :
+            ListFollowingAdapter.OnItemClickCallback {
             override fun onItemClicked(data: UserFollowing) {
                 showSelectedUser(data)
             }

@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.main
 
 import android.app.SearchManager
 import android.content.Context
@@ -14,7 +14,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.picodiploma.mysubmission2.R
+import com.dicoding.picodiploma.mysubmission2.ui.userdetails.UserDetailsActivity
 import com.dicoding.picodiploma.mysubmission2.databinding.ActivityMainBinding
+import com.dicoding.picodiploma.mysubmission2.network.UserResult
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,15 +34,26 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Github User's Search"
 
         binding.rvUsers.setHasFixedSize(true)
-//        showRecyclerList()
 
         viewModel.listUsers.observe(this, { users ->
-            if (users.isEmpty())
-                Toast.makeText(this@MainActivity, "User tidak ditemukan", Toast.LENGTH_SHORT).show()
-            else showRecyclerList(users)
+            showRecyclerList(users)
+        })
+        viewModel.toastText.observe(this, {
+            it.getContentIfNotHandled()?.let { toastText ->
+                Toast.makeText(this@MainActivity, toastText, Toast.LENGTH_SHORT).show()
+            }
         })
         viewModel.isLoading.observe(this, {
             showLoading(it)
+        })
+        viewModel.snackbarText.observe(this, {
+            it.getContentIfNotHandled()?.let { snackBarText ->
+                Snackbar.make(
+                    window.decorView.rootView,
+                    snackBarText,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         })
     }
 

@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.ui.userdetails
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.mysubmission2.databinding.FollowerFragmentBinding
+import com.dicoding.picodiploma.mysubmission2.network.UserFollower
+import com.google.android.material.snackbar.Snackbar
 
 class FollowerFragment : Fragment() {
 
@@ -33,14 +35,27 @@ class FollowerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         username = arguments?.getString(ARG_USERNAME) as String
-        viewModel = ViewModelProvider(this, FollowerViewModelFactory(username)).get(FollowerViewModel::class.java)
+        viewModel = ViewModelProvider(this, FollowerViewModelFactory(username)).get(
+            FollowerViewModel::class.java)
         viewModel.userFollowers.observe(viewLifecycleOwner, { userFollowers ->
-            if (userFollowers.isEmpty())
-                Toast.makeText(view.context, "Follower tidak ditemukan", Toast.LENGTH_SHORT).show()
-            else showRecyclerList(userFollowers)
+            showRecyclerList(userFollowers)
+        })
+        viewModel.toastText.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { toastText ->
+                Toast.makeText(view.context, toastText, Toast.LENGTH_SHORT).show()
+            }
         })
         viewModel.isLoading.observe(viewLifecycleOwner, {
             showLoading(it)
+        })
+        viewModel.snackbarText.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { snackBarText ->
+                Snackbar.make(
+                    binding.root.rootView,
+                    snackBarText,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         })
     }
 
@@ -50,7 +65,8 @@ class FollowerFragment : Fragment() {
         val listFollowerAdapter = ListFollowerAdapter(userFollowers)
         binding.rvFollowers.adapter = listFollowerAdapter
 
-        listFollowerAdapter.setOnItemClickCallback(object : ListFollowerAdapter.OnItemClickCallback {
+        listFollowerAdapter.setOnItemClickCallback(object :
+            ListFollowerAdapter.OnItemClickCallback {
             override fun onItemClicked(data: UserFollower) {
                 showSelectedUser(data)
             }

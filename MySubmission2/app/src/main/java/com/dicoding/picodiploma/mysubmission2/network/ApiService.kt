@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mysubmission2
+package com.dicoding.picodiploma.mysubmission2.network
 
 import retrofit2.Call
 import retrofit2.http.*

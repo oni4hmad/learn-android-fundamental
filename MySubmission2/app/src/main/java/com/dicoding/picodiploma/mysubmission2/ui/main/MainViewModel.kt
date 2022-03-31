@@ -13,10 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel() {
-    /*val userFounded = ArrayList<User>()
-    var lastQuery = String()
-    val isLasyQueryEmpty: Boolean
-        get() = lastQuery.isEmpty()*/
 
     companion object {
         private const val TAG = "MainViewModel"

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GitHub User 3</string>
+
+    <string name="username">\@%1$s</string>
+    <string name="user_count">%1$d followers · %2$d following · %3$d repositories</string>
+    <string name="search_hint">Masukkan nama</string>
+    <string name="tab_text_1">Follower</string>
+    <string name="tab_text_2">Following</string>
+
+    <!-- placeholder -->
+    <string name="name">Name</string>
+    <string name="location">location</string>
+    <string name="location_icon">location icon</string>
+    <string name="_username">username</string>
+    <string name="_0_followers_0_following_0_repositories">0 followers · 0 following · 0 repositories</string>
+    <string name="search">Search</string>
+    <string name="share">Share</string>
+
+</resources>
+
+

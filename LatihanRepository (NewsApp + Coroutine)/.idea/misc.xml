@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp + Coroutine)/app/src/main/res/layout/activity_home.xml" value="0.135258358662614" />
+        <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp + Coroutine)/app/src/main/res/layout/fragment_news.xml" value="0.135258358662614" />
+        <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp + Coroutine)/app/src/main/res/layout/item_news.xml" value="0.135258358662614" />
         <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp)/app/src/main/res/layout/activity_home.xml" value="0.135258358662614" />
         <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp)/app/src/main/res/layout/fragment_news.xml" value="0.135258358662614" />
         <entry key="..\:/Users/Oni Ahmad/AndroidStudioProjects/LatihanRepository (NewsApp)/app/src/main/res/layout/item_news.xml" value="0.5" />

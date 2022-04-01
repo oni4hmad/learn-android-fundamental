@@ -15,11 +15,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserDetailsViewModelFactory(private val username: String): ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T = UserDetailsViewModel(username) as T
+class UserDetailsViewModelFactory(private val application: Application, private val username: String): ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = UserDetailsViewModel(application, username) as T
 }
 
-class UserDetailsViewModel(username: String) : ViewModel() {
+class UserDetailsViewModel(private val application: Application, private val username: String) : ViewModel() {
 
     companion object {
         private const val TAG = "UserDetailsViewModel"
@@ -61,12 +61,12 @@ class UserDetailsViewModel(username: String) : ViewModel() {
         })
     }
 
-    fun insertFavoriteUser(application: Application, user: FavoriteUser)
+    fun insertFavoriteUser(user: FavoriteUser)
         = FavoriteUserRepository(application).insert(user)
 
-    fun deleteFavoriteUser(application: Application, user: FavoriteUser)
-            = FavoriteUserRepository(application).delete(user)
+    fun deleteFavoriteUser(user: FavoriteUser)
+        = FavoriteUserRepository(application).delete(user)
 
-    fun isFavoriteUser(application: Application, username: String): LiveData<Boolean>
+    fun isFavoriteUser(): LiveData<Boolean>
         = FavoriteUserRepository(application).isUserFavorite(username)
 }

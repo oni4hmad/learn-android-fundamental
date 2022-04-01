@@ -10,6 +10,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.dicoding.picodiploma.mysubmission3.R
 import com.dicoding.picodiploma.mysubmission3.databinding.ActivitySettingsBinding
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -23,7 +24,7 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Settings"
+        supportActionBar?.title = getString(R.string.ab_title_settings)
 
         val pref = SettingPreferences.getInstance(dataStore)
         val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[SettingsViewModel::class.java]

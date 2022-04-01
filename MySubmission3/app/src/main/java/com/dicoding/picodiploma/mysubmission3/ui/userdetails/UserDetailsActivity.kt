@@ -42,12 +42,12 @@ class UserDetailsActivity : AppCompatActivity() {
         binding = ActivityUserDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Detail User"
+        supportActionBar?.title = getString(R.string.ab_title_detailuser)
         supportActionBar?.elevation = 0f
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         username = intent.getStringExtra(EXTRA_USERNAME) as String
-        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(username))[UserDetailsViewModel::class.java]
+        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(this.application, username))[UserDetailsViewModel::class.java]
 
         viewModel.userInfo.observe(this, { userInfo ->
             Glide.with(this@UserDetailsActivity)
@@ -60,9 +60,9 @@ class UserDetailsActivity : AppCompatActivity() {
                 if (userInfo.location.isNullOrEmpty()) ivLocation.visibility = View.INVISIBLE
                 tvUserCount.text = getString(R.string.user_count, userInfo.followers, userInfo.following, userInfo.publicRepos)
             }
-            showFab(true)
+            showFab()
         })
-        viewModel.isFavoriteUser(this.application, username).observe(this, { isFavoriteUser: Boolean ->
+        viewModel.isFavoriteUser().observe(this, { isFavoriteUser: Boolean ->
             if (isFavoriteUser)
                 setFabFavorite(true)
             else setFabFavorite(false)
@@ -95,13 +95,11 @@ class UserDetailsActivity : AppCompatActivity() {
                 Log.d("userInfo", userInfo.toString())
                 if (this.isFavorite) {
                     viewModel.deleteFavoriteUser(
-                        this.application,
                         FavoriteUser(userInfo.id, userInfo.login, userInfo.avatarUrl)
                     )
                     setFabFavorite(false)
                 } else {
                     viewModel.insertFavoriteUser(
-                        this.application,
                         FavoriteUser(userInfo.id, userInfo.login, userInfo.avatarUrl)
                     )
                     setFabFavorite(true)
@@ -163,12 +161,8 @@ class UserDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun showFab(isShowed: Boolean) {
-        if (isShowed) {
-            binding.fabAddFavorite.visibility = View.VISIBLE
-        } else {
-            binding.fabAddFavorite.visibility = View.GONE
-        }
+    private fun showFab() {
+        binding.fabAddFavorite.visibility = View.VISIBLE
     }
 
     private fun setFabFavorite(isFavorite: Boolean) {

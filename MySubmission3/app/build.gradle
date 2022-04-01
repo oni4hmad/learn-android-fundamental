@@ -37,9 +37,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-    testOptions {
-        unitTests.includeAndroidResources = true
-    }
 }
 
 dependencies {
@@ -70,9 +67,4 @@ dependencies {
     /* room database */
     implementation 'androidx.room:room-runtime:2.3.0'
     kapt 'androidx.room:room-compiler:2.3.0'
-
-    /* unit test */
-    /*testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.mockito:mockito-core:3.6.0"
-    testImplementation 'org.mockito:mockito-inline:3.6.0'*/
 }

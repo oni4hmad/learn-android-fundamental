@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Github User's Search"
+        supportActionBar?.title = getString(R.string.ab_title_main)
 
         viewModel = ViewModelProvider(this, MainViewModelFactory(
             SettingPreferences.getInstance(dataStore)

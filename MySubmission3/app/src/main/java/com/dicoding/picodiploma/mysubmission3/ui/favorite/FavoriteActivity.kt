@@ -24,7 +24,7 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Favorite User"
+        supportActionBar?.title = getString(R.string.ab_title_favorite)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

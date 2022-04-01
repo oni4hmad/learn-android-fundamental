@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.mysubmission3.R
 import com.dicoding.picodiploma.mysubmission3.database.FavoriteUser
 import com.dicoding.picodiploma.mysubmission3.databinding.ActivityFavoriteBinding
-import com.dicoding.picodiploma.mysubmission3.network.UserResult
-import com.dicoding.picodiploma.mysubmission3.ui.main.ListUserAdapter
 import com.dicoding.picodiploma.mysubmission3.ui.settings.SettingsActivity
 import com.dicoding.picodiploma.mysubmission3.ui.userdetails.UserDetailsActivity
 
@@ -29,7 +27,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Favorite User"
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         adapter = ListFavoriteAdapter()
         adapter.setOnItemClickCallback(object : ListFavoriteAdapter.OnItemClickCallback {
@@ -42,8 +40,7 @@ class FavoriteActivity : AppCompatActivity() {
         binding.rvFavoriteUsers.setHasFixedSize(true)
         binding.rvFavoriteUsers.adapter = adapter
 
-        viewModel = ViewModelProvider(this, FavoriteViewModelFactory(application))
-            .get(FavoriteViewModel::class.java)
+        viewModel = ViewModelProvider(this, FavoriteViewModelFactory(application))[FavoriteViewModel::class.java]
 
         viewModel.getAllFavoriteUsers().observe(this, { favoriteUsers ->
             if (favoriteUsers != null) {

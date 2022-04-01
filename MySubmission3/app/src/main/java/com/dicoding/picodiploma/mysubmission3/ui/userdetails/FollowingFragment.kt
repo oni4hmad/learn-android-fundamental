@@ -36,8 +36,7 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         username = arguments?.getString(ARG_USERNAME) as String
-        viewModel = ViewModelProvider(this, FollowingViewModelFactory(username)).get(
-            FollowingViewModel::class.java)
+        viewModel = ViewModelProvider(this, FollowingViewModelFactory(username))[FollowingViewModel::class.java]
         viewModel.userFollowing.observe(viewLifecycleOwner, { userFollowing ->
             showRecyclerList(userFollowing)
         })

@@ -19,7 +19,7 @@ class UserDetailsViewModelFactory(private val username: String): ViewModelProvid
     override fun <T : ViewModel> create(modelClass: Class<T>): T = UserDetailsViewModel(username) as T
 }
 
-class UserDetailsViewModel(private val username: String) : ViewModel() {
+class UserDetailsViewModel(username: String) : ViewModel() {
 
     companion object {
         private const val TAG = "UserDetailsViewModel"
@@ -55,7 +55,6 @@ class UserDetailsViewModel(private val username: String) : ViewModel() {
                 }
             }
             override fun onFailure(call: Call<UserInfo>, t: Throwable) {
-                _isLoading.value = false
                 _snackbarText.value = Event(t.message.toString())
                 Log.e(TAG, "onFailure: ${t.message}")
             }

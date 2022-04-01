@@ -26,9 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.title = "Settings"
 
         val pref = SettingPreferences.getInstance(dataStore)
-        val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref)).get(
-            SettingsViewModel::class.java
-        )
+        val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[SettingsViewModel::class.java]
 
         settingsViewModel.getThemeSettings().observe(this, { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
@@ -44,7 +42,7 @@ class SettingsActivity : AppCompatActivity() {
             settingsViewModel.saveThemeSetting(isChecked)
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

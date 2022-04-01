@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, MainViewModelFactory(
             SettingPreferences.getInstance(dataStore)
-        )).get(MainViewModel::class.java)
+        ))[MainViewModel::class.java]
 
         binding.rvUsers.setHasFixedSize(true)
 

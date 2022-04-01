@@ -7,7 +7,6 @@ import com.dicoding.picodiploma.mysubmission3.network.SearchResponse
 import com.dicoding.picodiploma.mysubmission3.network.UserResult
 import com.dicoding.picodiploma.mysubmission3.ui.Event
 import com.dicoding.picodiploma.mysubmission3.ui.settings.SettingPreferences
-import com.dicoding.picodiploma.mysubmission3.ui.settings.SettingsViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

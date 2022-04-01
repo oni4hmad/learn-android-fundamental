@@ -5,11 +5,10 @@
         android:id="@+id/share"
         android:icon="@drawable/ic_baseline_share_24"
         android:title="@string/share"
-        android:visible="false"
         app:showAsAction="always"/>
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="always" />
 </menu>

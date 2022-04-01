@@ -1,7 +1,6 @@
 package com.dicoding.picodiploma.mysubmission3.ui.settings
 
 import androidx.lifecycle.*
-import com.dicoding.picodiploma.mysubmission3.ui.userdetails.UserDetailsViewModel
 import kotlinx.coroutines.launch
 
 class SettingsViewModelFactory(private val pref: SettingPreferences): ViewModelProvider.NewInstanceFactory() {

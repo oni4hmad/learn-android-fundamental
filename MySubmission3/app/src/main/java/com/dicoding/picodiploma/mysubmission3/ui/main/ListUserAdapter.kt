@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.picodiploma.mysubmission3.R
-import com.dicoding.picodiploma.mysubmission3.database.FavoriteUser
 import com.dicoding.picodiploma.mysubmission3.databinding.ItemRowUserBinding
 import com.dicoding.picodiploma.mysubmission3.network.UserResult
 

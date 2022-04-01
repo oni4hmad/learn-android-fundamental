@@ -1,7 +1,5 @@
 package com.dicoding.picodiploma.mysubmission3.ui.userdetails
 
-import android.app.ActionBar
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,9 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -25,14 +20,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
 class UserDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserDetailsBinding
     private lateinit var username: String
     private lateinit var viewModel: UserDetailsViewModel
-    private lateinit var menuList: Menu
     private var isFavorite = false
 
     companion object {
@@ -51,10 +43,11 @@ class UserDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Detail User"
+        supportActionBar?.elevation = 0f
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         username = intent.getStringExtra(EXTRA_USERNAME) as String
-        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(username)).get(
-            UserDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(username))[UserDetailsViewModel::class.java]
 
         viewModel.userInfo.observe(this, { userInfo ->
             Glide.with(this@UserDetailsActivity)
@@ -64,7 +57,7 @@ class UserDetailsActivity : AppCompatActivity() {
                 tvName.text = userInfo.name
                 tvUsername.text = getString(R.string.username, userInfo.login)
                 tvLocation.text = userInfo.location
-                if (userInfo.location.isNullOrEmpty()) ivLocation.visibility = View.GONE
+                if (userInfo.location.isNullOrEmpty()) ivLocation.visibility = View.INVISIBLE
                 tvUserCount.text = getString(R.string.user_count, userInfo.followers, userInfo.following, userInfo.publicRepos)
             }
             showFab(true)
@@ -97,10 +90,8 @@ class UserDetailsActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-        supportActionBar?.elevation = 0f
-
         binding.fabAddFavorite.setOnClickListener {
-            viewModel?.userInfo.value?.let { userInfo ->
+            viewModel.userInfo.value?.let { userInfo ->
                 Log.d("userInfo", userInfo.toString())
                 if (this.isFavorite) {
                     viewModel.deleteFavoriteUser(
@@ -120,7 +111,6 @@ class UserDetailsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        this.menuList = menu
         val inflater = menuInflater
         inflater.inflate(R.menu.userdetails_menu, menu)
         return true
@@ -131,7 +121,7 @@ class UserDetailsActivity : AppCompatActivity() {
             R.id.share -> {
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, "https://github.com/${binding.tvUsername.text.drop(1)}")
+                    putExtra(Intent.EXTRA_TEXT, "https://github.com/${username}")
                     type = "text/plain"
                 }
                 val shareIntent = Intent.createChooser(sendIntent, null)
@@ -143,12 +133,16 @@ class UserDetailsActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            android.R.id.home -> {
+                finish()
+                true
+            }
             else -> true
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding?.apply {
+        binding.apply {
             if (isLoading) {
                 imgUser.visibility = View.INVISIBLE
                 tvUsername.visibility = View.INVISIBLE
@@ -158,7 +152,6 @@ class UserDetailsActivity : AppCompatActivity() {
                 tvUserCount.visibility = View.INVISIBLE
                 progressBar2.visibility = View.VISIBLE
             } else {
-                menuList?.findItem(R.id.share).setVisible(true)
                 imgUser.visibility = View.VISIBLE
                 tvUsername.visibility = View.VISIBLE
                 tvName.visibility = View.VISIBLE
@@ -179,7 +172,7 @@ class UserDetailsActivity : AppCompatActivity() {
     }
 
     private fun setFabFavorite(isFavorite: Boolean) {
-        binding?.fabAddFavorite.apply {
+        binding.fabAddFavorite.apply {
             if (isFavorite) {
                 setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_baseline_favorite_24))
                 this@UserDetailsActivity.isFavorite = true

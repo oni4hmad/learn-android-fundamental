@@ -9,7 +9,6 @@ import com.dicoding.picodiploma.mysubmission3.R
 import com.dicoding.picodiploma.mysubmission3.database.FavoriteUser
 import com.dicoding.picodiploma.mysubmission3.databinding.ItemRowUserBinding
 import com.dicoding.picodiploma.mysubmission3.helper.FavoriteUserDiffCallback
-import com.dicoding.picodiploma.mysubmission3.network.UserFollowing
 
 class ListFavoriteAdapter : RecyclerView.Adapter<ListFavoriteAdapter.ListViewHolder>() {
 

@@ -17,7 +17,6 @@ class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteBinding
     private lateinit var viewModel: FavoriteViewModel
-
     private lateinit var adapter: ListFavoriteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

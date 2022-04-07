@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = getString(R.string.ab_title_main)
 
-        viewModel = ViewModelProvider(this, MainViewModelFactory(
-            SettingPreferences.getInstance(dataStore)
-        ))[MainViewModel::class.java]
+        val pref = SettingPreferences.getInstance(dataStore)
+        viewModel = ViewModelProvider(this, MainViewModelFactory(pref))[MainViewModel::class.java]
 
         binding.rvUsers.setHasFixedSize(true)
 

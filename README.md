@@ -1,6 +1,6 @@
 # Dicoding Android Fundamental Course's Project
 
-This repository is is created to documentating my learning progress for dicoding android fundamental course. There's 3 assignment regarding to this course which will make a single Github User Bookmark App:
+This repository is created to documentating my learning progress for dicoding android fundamental course. There's 3 assignment regarding to this course which will make a single Github User Bookmark App:
 
 [**First Assignment**](/MySubmission1/)
 

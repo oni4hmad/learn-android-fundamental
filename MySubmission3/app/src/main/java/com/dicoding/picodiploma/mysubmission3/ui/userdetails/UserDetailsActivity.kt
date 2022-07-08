@@ -49,7 +49,7 @@ class UserDetailsActivity : AppCompatActivity() {
         username = intent.getStringExtra(EXTRA_USERNAME) as String
         viewModel = ViewModelProvider(this, UserDetailsViewModelFactory(this.application, username))[UserDetailsViewModel::class.java]
 
-        viewModel.userInfo.observe(this, { userInfo ->
+        viewModel.userInfo.observe(this) { userInfo ->
             Glide.with(this@UserDetailsActivity)
                 .load(userInfo.avatarUrl)
                 .into(binding.imgUser)
@@ -61,16 +61,16 @@ class UserDetailsActivity : AppCompatActivity() {
                 tvUserCount.text = getString(R.string.user_count, userInfo.followers, userInfo.following, userInfo.publicRepos)
             }
             showFab()
-        })
-        viewModel.isFavoriteUser().observe(this, { isFavoriteUser: Boolean ->
+        }
+        viewModel.isFavoriteUser().observe(this) { isFavoriteUser: Boolean ->
             if (isFavoriteUser)
                 setFabFavorite(true)
             else setFabFavorite(false)
-        })
-        viewModel.isLoading.observe(this, {
+        }
+        viewModel.isLoading.observe(this) {
             showLoading(it)
-        })
-        viewModel.snackbarText.observe(this, {
+        }
+        viewModel.snackbarText.observe(this) {
             it.getContentIfNotHandled()?.let { snackBarText ->
                 Snackbar.make(
                     window.decorView.rootView,
@@ -78,7 +78,7 @@ class UserDetailsActivity : AppCompatActivity() {
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
-        })
+        }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         sectionsPagerAdapter.username = username

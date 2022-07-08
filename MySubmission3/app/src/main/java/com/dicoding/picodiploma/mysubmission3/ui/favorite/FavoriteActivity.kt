@@ -41,11 +41,11 @@ class FavoriteActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, FavoriteViewModelFactory(application))[FavoriteViewModel::class.java]
 
-        viewModel.getAllFavoriteUsers().observe(this, { favoriteUsers ->
+        viewModel.getAllFavoriteUsers().observe(this) { favoriteUsers ->
             if (favoriteUsers != null) {
                 adapter.setListFavoriteUsers(favoriteUsers)
             }
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

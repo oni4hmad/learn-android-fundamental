@@ -47,25 +47,25 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUsers.setHasFixedSize(true)
 
-        viewModel.getThemeSettings().observe(this, { isDarkModeActive: Boolean ->
+        viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        })
-        viewModel.listUsers.observe(this, { users ->
+        }
+        viewModel.listUsers.observe(this) { users ->
             showRecyclerList(users)
-        })
-        viewModel.toastText.observe(this, {
+        }
+        viewModel.toastText.observe(this) {
             it.getContentIfNotHandled()?.let { toastText ->
                 Toast.makeText(this@MainActivity, toastText, Toast.LENGTH_SHORT).show()
             }
-        })
-        viewModel.isLoading.observe(this, {
+        }
+        viewModel.isLoading.observe(this) {
             showLoading(it)
-        })
-        viewModel.snackbarText.observe(this, {
+        }
+        viewModel.snackbarText.observe(this) {
             it.getContentIfNotHandled()?.let { snackBarText ->
                 Snackbar.make(
                     window.decorView.rootView,
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
-        })
+        }
 
         setSearchView()
     }

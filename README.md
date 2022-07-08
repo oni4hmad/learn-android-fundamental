@@ -28,6 +28,7 @@ This repository is is created to documentating my learning progress for dicoding
 |Splash Screen|User Search|User Detail|
 |--|--|--|
 |![](.misc/gif/splash%20screen.gif)|![](.misc/gif/user%20search_1.gif)|![](.misc/gif/user%20detial.gif)|
+
 |Bookmark User|Change Theme|
 |--|--|
 |![](.misc/gif/favorite%20user.gif)|![](.misc/gif/change%20theme.gif)|

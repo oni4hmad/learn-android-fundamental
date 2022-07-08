@@ -2,7 +2,7 @@
 
 This repository is is created to documentating my learning progress for dicoding android fundamental course. There's 3 assignment regarding to this course which will make a single Github User Bookmark App:
 
-**First Assignment**
+[**First Assignment**](/MySubmission1/)
 
 *  Show user list using Recycler View
 *  Show detail user when any list item is tapped
@@ -11,14 +11,14 @@ This repository is is created to documentating my learning progress for dicoding
 *  Create share button to share user page url to another app using Explicit Intent
 *  Implementing splash screen
 
-**Second Assignment**
+[**Second Assignment**](/MySubmission2/)
 
 * Implementing Search View to do github user search
 * Get data from github API using Retrofit 
 * Implementing Tab Layout and View pager to show user following and follower
 * Implementing Android Architecture Component (ViewModel and LiveData)
 
-**Third Assignemnt**
+[**Third Assignemnt**](/MySubmission3/)
 
 * Implementing local database (CRUD) using SQLite and Room to bookmark favorite user
 * Create menu to change app theme (dark or light), and save its preference value in DataStore

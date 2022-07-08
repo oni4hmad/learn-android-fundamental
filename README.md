@@ -1,27 +1,27 @@
 # Dicoding Android Fundamental Course's Project
 
-This repository is created to documentating my learning progress for dicoding android fundamental course. There's 3 assignment regarding to this course which will make a single Github User Bookmark App:
+This repository was created to documentating my learning progress for dicoding android fundamental course. There are 3 assignments related to this course which will make a single Github User Bookmark App:
 
 [**First Assignment**](/MySubmission1/)
 
-*  Show user list using Recycler View
-*  Show detail user when any list item is tapped
-*  Utilizing Constraint Layout to create reponsive layout
-*  Use Parcelable to send data object from one activity to another when showing detail user
-*  Create share button to share user page url to another app using Explicit Intent
-*  Implementing splash screen
+* Showing user list using Recycler View
+* Showing detail user when any list item is tapped
+* Using Constraint Layout to create responsive layout
+* Using Parcelable to send data object from one activity to another when showing detail user
+* Creating share button to share user page url to another app using Explicit Intent
+* Implementing splash screen
 
 [**Second Assignment**](/MySubmission2/)
 
-* Implementing Search View to do github user search
-* Get data from github API using Retrofit 
-* Implementing Tab Layout and View pager to show user following and follower
-* Implementing Android Architecture Component (ViewModel and LiveData)
+* Implementing Search View to perform GitHub User searches
+* Using Retrofit to retrieve data from the GitHub API
+* Implementing Tab Layout and View Pager to display user following and follower
+* Implementing Android Architecture Components (ViewModel and LiveData)
 
 [**Third Assignemnt**](/MySubmission3/)
 
-* Implementing local database (CRUD) using SQLite and Room to bookmark favorite user
-* Create menu to change app theme (dark or light), and save its preference value in DataStore
+* Using SQLite and Room to bookmark favorite users in a local database (CRUD).
+* Creating menu to change app theme (dark or light), and saving its preference value in DataStore.
 
 ## Demo
 

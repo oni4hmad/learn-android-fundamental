@@ -18,7 +18,7 @@ This repository was created to documentating my learning progress for dicoding a
 * Implementing Tab Layout and View Pager to display user following and follower
 * Implementing Android Architecture Components (ViewModel and LiveData)
 
-[**Third Assignemnt**](/MySubmission3/)
+[**Third Assignment**](/MySubmission3/)
 
 * Using SQLite and Room to bookmark favorite users in a local database (CRUD).
 * Creating menu to change app theme (dark or light), and saving its preference value in DataStore.

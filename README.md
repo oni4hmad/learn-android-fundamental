@@ -1,4 +1,4 @@
-# Dicoding Android Fundamental Course's Project
+# Dicoding Android Fundamental Course's Project (Bookmark App Submission)
 
 This repository was created to documentating my learning progress for dicoding android fundamental course. There are 3 submissions related to this course which will make a single Github User Bookmark App:
 
